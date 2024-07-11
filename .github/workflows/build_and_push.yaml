@@ -15,15 +15,15 @@ jobs:
         config:
         - {
           compiler-variant: "GCC12_NoMPI",
-          compiler-variant-image: ubuntu:22.04
+          compiler-variant-image: "ubuntu:22.04"
         }
         - {
           compiler-variant: "GCC12_MPICH",
-          compiler-variant-image: ubuntu:22.04
+          compiler-variant-image: "ubuntu:22.04"
         }
         - {
           compiler-variant: "IntelOneAPI_NoMPI",
-          compiler-variant-image: intel/oneapi:2024.2.0-1-devel-ubuntu22.04
+          compiler-variant-image: "intel/oneapi:2024.2.0-1-devel-ubuntu22.04"
         }
     steps:
       -

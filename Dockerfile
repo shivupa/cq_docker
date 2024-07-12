@@ -1,5 +1,5 @@
 ARG COMPILER_VARIANT_IMAGE
-FROM COMPILER_VARIANT_IMAGE
+FROM $COMPILER_VARIANT_IMAGE
 
 LABEL org.opencontainers.image.authors="Shiv Upadhyay <shivnupadhyay@gmail.com>"
 

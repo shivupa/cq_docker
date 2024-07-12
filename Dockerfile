@@ -11,11 +11,9 @@ WORKDIR "$HOME"
 
 ARG COMPILER_VARIANT
 
-RUN apt-get -y update
-RUN apt-get install -y apt-transport-https
-RUN apt-get install -y -qq --no-install-recommends \
+RUN apt-get -y update && apt-get install -y -qq --no-install-recommends \
       build-essential \
-      ninja \
+      ninja-build \
       curl \
       git
 RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq -no-install-recommends gcc-12 libopenblas64-openmp-dev; fi

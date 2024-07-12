@@ -16,7 +16,7 @@ RUN apt-get update && \
       build-essential \
       ninja \
       curl \
-      git \
+      git
 RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq -no-install-recommends gcc-12 libopenblas64-openmp-dev; fi
 RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq -no-install-recommends mpich libmpich-dev libscalapack-mpich-dev; fi
 RUN rm -rf /var/lib/apt/lists/*

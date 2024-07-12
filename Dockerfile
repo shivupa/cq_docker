@@ -4,9 +4,9 @@ FROM $COMPILER_VARIANT_IMAGE
 LABEL org.opencontainers.image.authors="Shiv Upadhyay <shivnupadhyay@gmail.com>"
 
 SHELL ["/bin/bash", "-l", "-i", "-c"]
-ENV SHELL /bin/bash
+ENV SHELL=/bin/bash
 
-ENV HOME /root
+ENV HOME=/root
 WORKDIR "$HOME"
 
 ARG COMPILER_VARIANT
@@ -20,6 +20,8 @@ RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-inst
 RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends mpich libmpich-dev libscalapack-mpich-dev; fi
 RUN rm -rf /var/lib/apt/lists/*
 
+
+ENV GIT_SSL_NO_VERIFY=1
 RUN git clone https://github.com/xsligroup/libint-cq.git
 WORKDIR "$HOME"/libint-cq
 

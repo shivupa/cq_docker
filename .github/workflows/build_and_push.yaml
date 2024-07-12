@@ -30,18 +30,7 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
       -
-        name: Gather metadata (test layer)
-        id: meta-test
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            shivupa/cclib-ci
-          flavor: |
-            latest=true
-          tags: |
-            type=sha,prefix=${{ matrix.config.compiler-variant }}-test-
-      -
-        name: Gather metadata (CI layer)
+        name: Gather metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
@@ -57,19 +46,7 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and export to Docker (test layer)
-        uses: docker/build-push-action@v5
-        with:
-          build-args: |
-            COMPILER_VARIANT_IMAGE=${{ matrix.config.compiler-variant-image }}
-          push: false
-          load: true
-          tags: ${{ steps.meta-test.outputs.tags }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          target: test
-      -
-        name: Build and export to Docker (CI layer)
+        name: Build and export to Docker
         uses: docker/build-push-action@v5
         with:
           build-args: |

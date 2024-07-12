@@ -10,8 +10,8 @@ ENV HOME=/root
 WORKDIR "$HOME"
 
 ARG COMPILER_VARIANT
-
-RUN apt-get -y update && apt-get install -y -qq --no-install-recommends \
+RUN apt-get -y update && apt-get install apt-transport-https ca-certificates -y && update-ca-certificates
+RUN apt-get install -y -qq --no-install-recommends \
       build-essential \
       ninja-build \
       curl \

@@ -21,7 +21,6 @@ RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-in
 RUN rm -rf /var/lib/apt/lists/*
 
 
-ENV GIT_SSL_NO_VERIFY=1
 RUN git clone https://github.com/xsligroup/libint-cq.git
 WORKDIR "$HOME"/libint-cq
 

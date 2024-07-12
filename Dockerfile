@@ -11,8 +11,8 @@ WORKDIR "$HOME"
 
 ARG COMPILER_VARIANT
 
-RUN apt-get update && \
-    apt-get install -y -qq --no-install-recommends \
+RUN apt-get -y update
+RUN apt-get install -y -qq --no-install-recommends \
       build-essential \
       ninja \
       curl \

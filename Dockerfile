@@ -14,6 +14,7 @@ RUN apt-get -y update && apt-get install apt-transport-https ca-certificates -y 
 RUN apt-get install -y -qq --no-install-recommends \
       build-essential \
       cmake \
+      libeigen3-dev \
       ninja-build \
       curl \
       git

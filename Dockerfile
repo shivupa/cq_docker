@@ -26,3 +26,4 @@ RUN git clone https://github.com/xsligroup/libint-cq.git
 WORKDIR "$HOME"/libint-cq
 
 RUN mkdir -p build && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -S . -B ./build && cmake --build ./build && cmake --build ./build --target install
+RUN rm -rf "$HOME"/libint-cq

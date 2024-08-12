@@ -17,6 +17,7 @@ RUN apt-get install -y -qq --no-install-recommends \
       libeigen3-dev \
       ninja-build \
       curl \
+      jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip \
       git
 RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends gcc-12 libopenblas64-openmp-dev; fi
 RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends mpich libmpich-dev libscalapack-mpich-dev; fi

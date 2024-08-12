@@ -25,9 +25,9 @@ RUN apt-get install -y -qq --no-install-recommends \
       python3-dev \
       python3-pip \
       git
-RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends gcc-12 libopenblas64-openmp-dev; fi
+RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends gcc-12 libopenblas-dev libopenblas64-openmp-dev; fi
 RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends mpich libmpich-dev libscalapack-mpich-dev; fi
-RUN rm -rf /var/lib/apt/lists/*
+#RUN rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/xsligroup/libint-cq.git
 WORKDIR "$HOME"/libint-cq

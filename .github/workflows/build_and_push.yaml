@@ -86,5 +86,5 @@ jobs:
           build-args: |
             COMPILER_VARIANT_IMAGE=${{ matrix.config.compiler-variant-image }}
           push: true
-          tag: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}
         if: ${{ github.event_name != 'pull_request'}}

@@ -64,7 +64,7 @@ jobs:
           cache-to: type=gha,mode=max
       -
         name: Slim docker image
-        uses: kitabisa/docker-slim-action@v1
+        uses: kitabisa/docker-slim-action@v1.1.2
         env:
           DSLIM_HTTP_PROBE: false
         with:

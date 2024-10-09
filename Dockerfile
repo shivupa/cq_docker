@@ -27,10 +27,10 @@ RUN apt-get -y update && apt-get install -y --no-install-recommends \
       git
 RUN if [[ 'GCC' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends gcc-12 libopenblas-dev libopenblas64-openmp-dev; fi
 RUN if [[ 'MPICH' == *$COMPILER_VARIANT* ]]; then apt-get install -y -qq --no-install-recommends mpich libmpich-dev libscalapack-mpich-dev; fi
-#RUN rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/xsligroup/libint-cq.git
 WORKDIR "$HOME"/libint-cq
 
 RUN mkdir -p build && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -S . -B ./build && cmake --build ./build && cmake --build ./build --target install
 RUN rm -rf "$HOME"/libint-cq
+RUN rm -rf /var/lib/apt/lists/*

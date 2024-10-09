@@ -71,9 +71,9 @@ jobs:
           DSLIM_HTTP_PROBE: false
           DSLIM_EXCLUDE_PATTERN: "/opt/*"
         with:
-          overwrite: false
+          overwrite: true
           target: ${{ steps.meta.outputs.tags }}
-          tag: ${{ steps.meta.outputs.tags }}-slim
+          tag: ${{ steps.meta.outputs.tags }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v3

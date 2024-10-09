@@ -89,7 +89,8 @@ jobs:
         if: ${{ github.event_name != 'pull_request'}}
       -
         name: Push to DockerHub
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
         #uses: docker/build-push-action@v5
         #with:
         #  build-args: |

@@ -44,7 +44,8 @@ jobs:
             shivupa/cq-ci
           flavor: |
             latest=true
-          tags: type=edge,prefix=${{ matrix.config.compiler-variant }}-
+          tags: |
+            type=edge,suffix='',prefix=${{ matrix.config.compiler-variant }}-
             #type=schedule,pattern={{date 'YYYYMMDD'}},prefix=${{ matrix.config.compiler-variant }}-
             #type=sha,prefix=${{ matrix.config.compiler-variant }}-
             #type=edge,prefix=${{ matrix.config.compiler-variant }}-

@@ -45,10 +45,10 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=edge,suffix='',prefix=${{ matrix.config.compiler-variant }}
-          #type=schedule,pattern={{date 'YYYYMMDD'}},prefix=${{ matrix.config.compiler-variant }}-
-          #type=sha,prefix=${{ matrix.config.compiler-variant }}-
-          #type=edge,prefix=${{ matrix.config.compiler-variant }}-
+            type=schedule,pattern={{date 'YYYYMMDD'}},prefix=${{ matrix.config.compiler-variant }}-
+            type=sha,prefix=${{ matrix.config.compiler-variant }}-
+            type=edge,prefix=${{ matrix.config.compiler-variant }}-
+          #type=edge,suffix='',prefix=${{ matrix.config.compiler-variant }}
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -63,24 +63,23 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      -
-        name: Slim docker image
-        id: slim
-        uses: kitabisa/docker-slim-action@v1.1.2
-        env:
-          DSLIM_PULL: true
-          DSLIM_HTTP_PROBE: false
-          DDSLIM_PRESERVE_PATH: "/usr/local"
-        with:
-          overwrite: true
-          target: ${{ steps.meta.outputs.tags }}
-          tag: ${{ steps.meta.outputs.tags }}
-            # Dump the report
-      - 
-        name: Slim report 
-        run: echo "${REPORT}"
-        env:
-          REPORT: ${{ steps.slim.outputs.report }}
+          #-
+          #  name: Slim docker image
+          #  id: slim
+          #  uses: kitabisa/docker-slim-action@v1.1.2
+          #  env:
+          #    DSLIM_PULL: true
+          #    DSLIM_HTTP_PROBE: false
+          #    DDSLIM_PRESERVE_PATH: "/usr/local"
+          #  with:
+          #    overwrite: true
+          #    target: ${{ steps.meta.outputs.tags }}
+          #    tag: ${{ steps.meta.outputs.tags }}
+          #- 
+          #  name: Slim report 
+          #  run: echo "${REPORT}"
+          #  env:
+          #    REPORT: ${{ steps.slim.outputs.report }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v3
@@ -90,12 +89,12 @@ jobs:
         if: ${{ github.event_name != 'pull_request'}}
       -
         name: Push to DockerHub
-        run: |
-          docker image push "${{ secrets.DOCKERHUB_USERNAME}}/cq-ci" --all-tags
+        #run: |
+        #  docker image push "${{ secrets.DOCKERHUB_USERNAME}}/cq-ci" --all-tags
         #${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
-        #uses: docker/build-push-action@v5
-        #with:
-        #  build-args: |
-        #    COMPILER_VARIANT_IMAGE=${{ matrix.config.compiler-variant-image }}
-        #  push: true
-        #  tags: ${{ steps.meta.outputs.tags }}
+        uses: docker/build-push-action@v5
+        with:
+          build-args: |
+            COMPILER_VARIANT_IMAGE=${{ matrix.config.compiler-variant-image }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}

@@ -43,7 +43,7 @@ jobs:
           images: |
             shivupa/cq-ci
           flavor: |
-            latest=true
+            latest=false
           tags: |
             type=edge,suffix='',prefix=${{ matrix.config.compiler-variant }}-
           #type=schedule,pattern={{date 'YYYYMMDD'}},prefix=${{ matrix.config.compiler-variant }}-

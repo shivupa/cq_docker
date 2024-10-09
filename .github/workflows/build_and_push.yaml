@@ -66,6 +66,7 @@ jobs:
         name: Slim docker image
         uses: kitabisa/docker-slim-action@v1.1.2
         env:
+          DSLIM_PULL: true
           DSLIM_HTTP_PROBE: false
         with:
           overwrite: true

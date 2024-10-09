@@ -70,7 +70,7 @@ jobs:
         env:
           DSLIM_PULL: true
           DSLIM_HTTP_PROBE: false
-          DSLIM_EXCLUDE_PATTERN: "/usr/local/*"
+          DDSLIM_PRESERVE_PATH: "/usr/local"
         with:
           overwrite: true
           target: ${{ steps.meta.outputs.tags }}

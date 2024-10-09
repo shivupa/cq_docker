@@ -65,6 +65,7 @@ jobs:
           cache-to: type=gha,mode=max
       -
         name: Slim docker image
+        id: slim
         uses: kitabisa/docker-slim-action@v1.1.2
         env:
           DSLIM_PULL: true
@@ -90,7 +91,8 @@ jobs:
       -
         name: Push to DockerHub
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
+          docker image push "${{ github.repository }}" --all-tags
+        #${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
         #uses: docker/build-push-action@v5
         #with:
         #  build-args: |

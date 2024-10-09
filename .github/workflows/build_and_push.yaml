@@ -44,7 +44,7 @@ jobs:
             shivupa/cq-ci
           flavor: |
             latest=true
-          tag: type=edge,prefix=${{ matrix.config.compiler-variant }}-
+          tags: type=edge,prefix=${{ matrix.config.compiler-variant }}-
             #type=schedule,pattern={{date 'YYYYMMDD'}},prefix=${{ matrix.config.compiler-variant }}-
             #type=sha,prefix=${{ matrix.config.compiler-variant }}-
             #type=edge,prefix=${{ matrix.config.compiler-variant }}-
@@ -70,7 +70,7 @@ jobs:
           DSLIM_HTTP_PROBE: false
         with:
           overwrite: true
-          target: ${{ steps.meta.outputs.tag }}
+          target: ${{ steps.meta.outputs.tags }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v3
@@ -85,5 +85,5 @@ jobs:
           build-args: |
             COMPILER_VARIANT_IMAGE=${{ matrix.config.compiler-variant-image }}
           push: true
-          tag: ${{ steps.meta.outputs.tag }}
+          tag: ${{ steps.meta.outputs.tags }}
         if: ${{ github.event_name != 'pull_request'}}

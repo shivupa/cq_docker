@@ -90,6 +90,6 @@ jobs:
         #  push: true
         #  tags: ${{ steps.meta.outputs.tags }}
         run: |
-          docker tag ${{ steps.meta.outputs.tags }}-slim ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
+          docker tag ${{ steps.meta.outputs.tags }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
         if: ${{ github.event_name != 'pull_request'}}

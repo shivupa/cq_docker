@@ -91,7 +91,7 @@ jobs:
       -
         name: Push to DockerHub
         run: |
-          docker image push "cq-ci" --all-tags
+          docker image push "${{ secrets.DOCKERHUB_USERNAME}}/cq-ci" --all-tags
         #${{ secrets.DOCKERHUB_USERNAME }}/${{ steps.meta.outputs.tags }}
         #uses: docker/build-push-action@v5
         #with:
